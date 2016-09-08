@@ -6,18 +6,18 @@
   <title>express 原理介绍之http服务 | Express</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近公司在用node做页面的渲染，于是开始学习起来node，凡是后台语言，我想肯定是少不了框架的，在node中运用比较普遍的我想可能就是express了吧。Express 是一种保持最低程度规模的灵活 Node.js Web 应用程序框架，为 Web 和移动应用程序提供一组强大的功能。
-采用http模块实现HTTP 服务器express的http请求是基于http模块实现，http模块实现的是基于">
+采用http模块实现HTTP 服务器功能express的http请求是基于http模块实现，http模块实现的是">
 <meta property="og:type" content="website">
 <meta property="og:title" content="express 原理介绍之http服务">
 <meta property="og:url" content="http://yoursite.com/express/index.html">
 <meta property="og:site_name" content="Express">
 <meta property="og:description" content="最近公司在用node做页面的渲染，于是开始学习起来node，凡是后台语言，我想肯定是少不了框架的，在node中运用比较普遍的我想可能就是express了吧。Express 是一种保持最低程度规模的灵活 Node.js Web 应用程序框架，为 Web 和移动应用程序提供一组强大的功能。
-采用http模块实现HTTP 服务器express的http请求是基于http模块实现，http模块实现的是基于">
-<meta property="og:updated_time" content="2016-09-03T14:01:06.276Z">
+采用http模块实现HTTP 服务器功能express的http请求是基于http模块实现，http模块实现的是">
+<meta property="og:updated_time" content="2016-09-08T15:20:34.736Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="express 原理介绍之http服务">
 <meta name="twitter:description" content="最近公司在用node做页面的渲染，于是开始学习起来node，凡是后台语言，我想肯定是少不了框架的，在node中运用比较普遍的我想可能就是express了吧。Express 是一种保持最低程度规模的灵活 Node.js Web 应用程序框架，为 Web 和移动应用程序提供一组强大的功能。
-采用http模块实现HTTP 服务器express的http请求是基于http模块实现，http模块实现的是基于">
+采用http模块实现HTTP 服务器功能express的http请求是基于http模块实现，http模块实现的是">
   
     <link rel="alternate" href="/atom.xml" title="Express" type="application/atom+xml">
   
@@ -89,25 +89,57 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>最近公司在用node做页面的渲染，于是开始学习起来node，凡是后台语言，我想肯定是少不了框架的，在node中运用比较普遍的我想可能就是express了吧。<br>Express 是一种保持最低程度规模的灵活 Node.js Web 应用程序框架，为 Web 和移动应用程序提供一组强大的功能。</p>
-<h3 id="采用http模块实现HTTP-服务器"><a href="#采用http模块实现HTTP-服务器" class="headerlink" title="采用http模块实现HTTP 服务器"></a>采用http模块实现HTTP 服务器</h3><p>express的http请求是基于http模块实现，http模块实现的是基于事件的 HTTP 服务器</p>
+<h3 id="采用http模块实现HTTP-服务器功能"><a href="#采用http模块实现HTTP-服务器功能" class="headerlink" title="采用http模块实现HTTP 服务器功能"></a>采用http模块实现HTTP 服务器功能</h3><p>express的http请求是基于http模块实现，http模块实现的是基于事件的 HTTP 服务器</p>
 <pre><code>var http = require(&apos;http&apos;);//http模块
 //请求的统一入口函数
 function serverHandle(request, response) {
     //http请求统一处理函数
-    `` //middleware();``
+    `` //middleware();``//根据request.url做处理
     console.log(&apos;host:&apos;+request.headers.host+&quot;,url:&quot;+request.url);
 }
 var server=http.createServer(serverHandle);//http模块的HTTP服务器对象
 server.listen(8000,function(){
     //监听成功后回调
     console.log(&apos;Server running at http://127.0.0.1:8000/&apos;);
+    response.end(&apos;Hello World\n&apos;);
 })
 </code></pre><p>以上是express的实现的基础，express中的中间件便是在 <em>serverHandle</em>进行处理的，启动项目时用app.use将所需要的中间件按代码执行顺序加入中间件序列，当监听到请求就把中间件按照加入的顺序在serverHandle执行。</p>
-<h2 id="express-语法"><a href="#express-语法" class="headerlink" title="express 语法"></a>express 语法</h2>
+<h2 id="才用express实现-HTTP-服务器功能"><a href="#才用express实现-HTTP-服务器功能" class="headerlink" title="才用express实现 HTTP 服务器功能"></a>才用express实现 HTTP 服务器功能</h2><pre><code>var express = require(&apos;express&apos;);
+var app = express(); // 对象
+//通过app.use() ,app.METHOD()加入 middleware 处理函数
+app.use(&apos;/&apos;, function (request, response) {
+    response.send(&apos;Hello World!&apos;);
+});
+app.get(&apos;/&apos;, function (request, response) {
+    response.send(&apos;Hello World!&apos;);
+});
+var server = app.listen(8000, function () {    //监听 8000端口
+    var host = server.address().address;
+    var port = server.address().port;
+
+    console.log(&apos;Example app listening at http://%s:%s&apos;, host, port);
+});
+</code></pre><p>middleware 即监听请求后服务器的执行的一系列处理方法，express采用app.use() ,app.METHOD()加入一些在服务器监听请求后的处理函数，为一个函数都可用response.send(‘Hello World!’);等相关方法直接响应客服端，即实现 原生的response.end(‘Hello World!’);方法, 为了让中间件与响应客服端做一定区分express4.x以及路由模块化等，express将响应客服端抽象出来var express = require(‘express’); var router = express.Router();  采用router实现</p>
+<pre><code>var express = require(&apos;express&apos;);
+var router = express.Router();
+// 该路由使用的中间件
+router.use(function timeLog(req, res, next) {
+  console.log(&apos;Time: &apos;, Date.now());
+  next();
+});
+// 定义网站主页的路由
+router.get(&apos;/&apos;, function(req, res) {
+  res.send(&apos;Birds home page&apos;);
+});
+// 定义 about 页面的路由
+router.get(&apos;/about&apos;, function(req, res) {
+  res.send(&apos;About birds&apos;);
+});
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/express/index.html" data-id="cisn98y600001u4q033apk7kr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/express/index.html" data-id="cisugbo5e000178q0bpfbxwyi" class="article-share-link">Share</a>
       
       
     </footer>
