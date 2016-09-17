@@ -13,7 +13,8 @@
 <meta property="og:description" content="浏览器的组成浏览器的主要组件构成如图：     　　1.用户界面－ 包括地址栏、后退/前进按钮、书签目录等，也就是你所看到的除了用来显示你所请求页面的主窗口之外的其他部分　　2.浏览器引擎－ 用来查询及操作渲染引擎的接口　　3.渲染引擎－ 用来显示请求的内容，例如，如果请求内容为html，它负责解析html及css，并将解析后的结果显示出来　　4.网络－ 用来完成网络调用，例如http请求，它具有">
 <meta property="og:image" content="https://rionamodo.github.io/css/images/js/1.png">
 <meta property="og:image" content="https://rionamodo.github.io/css/images/js/2.png">
-<meta property="og:updated_time" content="2016-09-17T11:45:53.222Z">
+<meta property="og:image" content="https://rionamodo.github.io/css/images/js/3.png">
+<meta property="og:updated_time" content="2016-09-17T14:55:49.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js执行原理">
 <meta name="twitter:description" content="浏览器的组成浏览器的主要组件构成如图：     　　1.用户界面－ 包括地址栏、后退/前进按钮、书签目录等，也就是你所看到的除了用来显示你所请求页面的主窗口之外的其他部分　　2.浏览器引擎－ 用来查询及操作渲染引擎的接口　　3.渲染引擎－ 用来显示请求的内容，例如，如果请求内容为html，它负责解析html及css，并将解析后的结果显示出来　　4.网络－ 用来完成网络调用，例如http请求，它具有">
@@ -55,9 +56,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rionamodo.github.io"></form>
@@ -88,11 +89,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="浏览器的组成"><a href="#浏览器的组成" class="headerlink" title="浏览器的组成"></a>浏览器的组成</h1><p>浏览器的主要组件构成如图：<br>  <img src="/css/images/js/1.png" alt="图1"><br>   <font size="3" face="黑体" style="line-height:28px"><br>　　1.用户界面－ 包括地址栏、后退/前进按钮、书签目录等，也就是你所看到的除了用来显示你所请求页面的主窗口之外的其他部分<br>　　2.浏览器引擎－ 用来查询及操作渲染引擎的接口<br>　　3.渲染引擎－ 用来显示请求的内容，例如，如果请求内容为html，它负责解析html及css，并将解析后的结果显示出来<br>　　4.网络－ 用来完成网络调用，例如http请求，它具有平台无关的接口，可以在不同平台上工作<br>　　5.UI 后端－ 用来绘制类似组合选择框及对话框等基本组件，具有不特定于某个平台的通用接口，底层使用操作系统的用户接口<br>　　6.JS解释器－ 用来解释执行JS代码<br>　　7. 数据存储－ 属于持久层，浏览器需要在硬盘中保存类似cookie的各种数据，HTML5定义了web database技术，这是一种轻量级完整的客户端存储技术<br></font></p>
-<h1 id="JavaScript的加载以及常见问题"><a href="#JavaScript的加载以及常见问题" class="headerlink" title="JavaScript的加载以及常见问题 #　"></a>JavaScript的加载以及常见问题 #　</h1><p>与js的加载密切相关的浏览器组件是 <font color="#00008B"> <em> 渲染引擎 </em> </font></p>
-  <font size="3" face="黑体" style="line-height:28px"><br>大多数情况下。浏览器会在html文档加载完毕后才开始渲染页面，同时下载页面上（渲染引擎识别script、link、img等标签）的资源。在渲染过程中如果遇到script(defer除外)标签，浏览器就会停止页面的渲染，先去下载js，等js下载完之后才会继续渲染页面。因此：<br>　　1.导致很多页面必须等ｊｓ加载完之后页面才能呈现给用户<br>　　2.js下载完成即开始执行，但页面并没有渲染，就会导致一些dom元素找不到的情况即出现null，如：<br>在index.html中有这样一段代码：<br><br></font>
-
-<pre><code>&lt;html&gt;
+        <h2 id="浏览器的组成"><a href="#浏览器的组成" class="headerlink" title="浏览器的组成"></a>浏览器的组成</h2><p>浏览器的主要组件构成如图：<br>  <img src="/css/images/js/1.png" alt="图1"><br>   <font size="3" face="黑体" style="line-height:28px"><br>　　1.用户界面－ 包括地址栏、后退/前进按钮、书签目录等，也就是你所看到的除了用来显示你所请求页面的主窗口之外的其他部分<br>　　2.浏览器引擎－ 用来查询及操作渲染引擎的接口<br>　　3.渲染引擎－ 用来显示请求的内容，例如，如果请求内容为html，它负责解析html及css，并将解析后的结果显示出来<br>　　4.网络－ 用来完成网络调用，例如http请求，它具有平台无关的接口，可以在不同平台上工作<br>　　5.UI 后端－ 用来绘制类似组合选择框及对话框等基本组件，具有不特定于某个平台的通用接口，底层使用操作系统的用户接口<br>　　6.JS解释器－ 用来解释执行JS代码<br>　　7. 数据存储－ 属于持久层，浏览器需要在硬盘中保存类似cookie的各种数据，HTML5定义了web database技术，这是一种轻量级完整的客户端存储技术<br></font></p>
+<h2 id="JavaScript的加载以及常见问题"><a href="#JavaScript的加载以及常见问题" class="headerlink" title="JavaScript的加载以及常见问题"></a>JavaScript的加载以及常见问题</h2><p>与js的加载密切相关的浏览器组件是 <font color="#00008B"> <em> 渲染引擎 </em> </font><br>  <font size="3" face="黑体" style="line-height:28px"><br>大多数情况下。浏览器会在html文档加载完毕后才开始渲染页面，同时下载页面上（渲染引擎识别script、link、img等标签）的资源。在渲染过程中如果遇到script(defer除外)标签，浏览器就会停止页面的渲染，先去下载js，等js下载完之后才会继续渲染页面。因此：<br>　　1.阻塞页面的渲染，导致一些页面必须等js加载完之后页面才能呈现给用户<br>　　2.js下载完成即开始进行变量与函数的申明、事件的绑定等，然后执行，但页面并没有渲染，就会导致一些dom元素找不到的情况即出现null，如：<br>在index.html中有这样一段代码：</font></p>
+<p></p>
+<pre><code>代码1：
+&lt;html&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;title&gt;Tutorial: Hello world!&lt;/title&gt;
@@ -104,18 +105,68 @@
 &lt;/html&gt;
 </code></pre> <font size="3" face="黑体" style="line-height:30px"><br><br>在index.js中有这样一段代码：<br><br></font>
 
-<pre><code>console.log(&apos;语句：document.getElementById(#greeting&quot;).innerHTML&apos;);
+<pre><code>代码2:
+console.log(&apos;语句：document.getElementById(#greeting&quot;).innerHTML&apos;);
 console.log(document.getElementById(&quot;#greeting&quot;).innerHTML);
-</code></pre> <font size="3" face="黑体" style="line-height:28px">
+</code></pre> <font size="3" face="黑体" style="line-height:28px"><br><br>控制台中出现了以下错误：<br><img src="/css/images/js/2.png" alt="图2"><br>如图2所示：控制台提示id为‘greeting’的元素为null。<br><br>    3.通过在元素上加属性绑定事件(如以下代码)，也会阻塞页面的渲染<br></font>
 
-<p>控制台中出现了以下错误：<br><img src="/css/images/js/2.png" alt="图2"><br>如图2所示：控制台提示id为‘greeting’的元素为null。<br></p></font><br>　1.客户端请求html，服务器端返回html，浏览器接卸里面的标签，渲染页面，顺序执行，发现，script加载js—这里他会组织js的运行<br>　　1.涉及到的问题，阻止页面的加载  [size=0.9em]<br>　　2.先于页面加载，但是开始寻找dom，报错<br>　　3.$(document).ready,$(window).onload的区别<p></p>
-<h1 id="js的执行环境以及作用域"><a href="#js的执行环境以及作用域" class="headerlink" title="js的执行环境以及作用域"></a>js的执行环境以及作用域</h1><p>   es6 let</p>
-<h1 id="单线程-结合js堆栈介绍"><a href="#单线程-结合js堆栈介绍" class="headerlink" title="单线程 结合js堆栈介绍"></a>单线程 结合js堆栈介绍</h1><p><a href="http://thefullstack.xyz/solid-javascript/" target="_blank" rel="external">http://thefullstack.xyz/solid-javascript/</a><br><a href="http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7" target="_blank" rel="external">http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7</a><br><a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/" target="_blank" rel="external">https://addyosmani.com/resources/essentialjsdesignpatterns/book/</a></p>
+<pre><code>&lt;h1 id=&quot;greeting&quot; onclick=&quot;handleClick(this)&quot;&gt;Hello world&lt;/h1&gt;
+</code></pre> <font size="3" face="黑体" style="line-height:28px"><br>　　在task.html中有这样一段代码：<br></font>
+
+<pre><code>代码3：
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;Tutorial: Hello world!&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 id=&quot;greeting&quot; onclick=&quot;handleClick(this)&quot;&gt;Hello world&lt;/h1&gt;
+    &lt;div id=&quot;demo&quot;&gt;This is a demo!&lt;/div&gt;
+&lt;/body&gt;
+&lt;script type=&quot;application/javascript&quot; src=&quot;./task.js&quot;&gt;&lt;/script&gt;
+&lt;/html&gt;
+</code></pre><font size="3" face="黑体" style="line-height:28px"><br>　　在task.js中有这样一段代码：<br></font>
+
+<pre><code>代码4：
+function handleClick(obj){
+    console.log(obj.innerHTML);
+}
+console.log(&apos;语句：document.getElementById(#demo&quot;).innerHTML&apos;);
+console.log(document.getElementById(&quot;#demo&quot;).innerHTML);
+</code></pre><p>　　在浏览器中浏览task.html控制台中出现了如图3所示错误：<br><img src="/css/images/js/3.png" alt="图3"></p>
+<font size="3" face="黑体" style="line-height:28px"><br>　如代码3所示，task.js放于页面的底部，id=demo的元素之后，但是在图3中还是报错了，原因是： 因为浏览器渲染页面时会去读取元素上的事件属性，同事寻找对于的全局函数，所以会等待js加载完之后才会去渲染页面因此执行console.log(document.getElementById(“#demo”).innerHTML)是会报id=demo为null。同时，在js中对直接执行对id=greeting之后的元素进行事件的绑定也不会成功。<br><br></font>
+
+  <font size="3" face="黑体" style="line-height:28px"><br>　　4.动态加载的html需要也需要在html加入至页面中之后对他进行事件的绑定或者直通过元素的属性进行事件的绑定<br></font>
+
+<h2 id="JavaScript单线程的执行原理"><a href="#JavaScript单线程的执行原理" class="headerlink" title="JavaScript单线程的执行原理"></a>JavaScript单线程的执行原理</h2><p>　　大多数浏览器有一个单独的处理进程，它由两个任务共享：JavaScript任务和用户界面更新。每一个时刻只有其中的一个操作得以执行，也就说JavaScript代码运行时用户界面不能对用户输入产生反应，反之亦然。JavaScript和UI更新共享的是同一个线程，叫浏览器UI线程。此UI线程围绕着一个简单的队列系统工作，任务被保存到队列（先进先出）中直至进程空闲。一旦空闲，队列中的下一个任务将被检索和运行。</p>
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Browser UI Thread Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+   &lt;button onclick=&quot;handleClick(this)&quot;&gt;Click Me&lt;/button&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        function handleClick(obj){
+            obj.innerHtml=&quot;Button Clicked&quot;
+            var div = document.createElement(&quot;div&quot;);
+            div.innerHTML = &quot;Clicked!&quot;;
+            document.body.appendChild(div);
+            //otherHandle();
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><font size="3" face="黑体" style="line-height:28px"><br>以上代码中的按钮被点击时，它触发ui线程创建两个任务并添加到任务中。第一个任务是按钮的ui更新，它需要改变改变外观以指示出它被按下了，第二个任务是JavaScript运行任务，包含handleClick()中代码，这里运行的唯一代码就是这个方法和所有被它调用的方法。假设UI线程空闲，第一个任务被检测并运行以更新按钮外观，然后JavaScript任务被检查和运行。在运行过程中，handleClick创建了一个新的&lt;div&gt;元素，并追加在&lt;body&gt;元素上，其效果是引发另一次UI改变。也就是说在JavaScript运行过程中，一个新的UI更新任务被添加到队列中<br></font>
+
+<h1 id="js的执行环境以及作用域"><a href="#js的执行环境以及作用域" class="headerlink" title="js的执行环境以及作用域"></a>js的执行环境以及作用域</h1><h2 id="JavaScript编写中常应的问题"><a href="#JavaScript编写中常应的问题" class="headerlink" title="JavaScript编写中常应的问题"></a>JavaScript编写中常应的问题</h2><p>  <font size="3" face="黑体" style="line-height:28px"><br>　　1.$(document).ready,$(window).onload的区别<br>  </font></p>
+<h1 id="js的执行环境以及作用域-1"><a href="#js的执行环境以及作用域-1" class="headerlink" title="js的执行环境以及作用域"></a>js的执行环境以及作用域</h1><p>   es6 let</p>
+<h1 id="单线程-结合js堆栈介绍"><a href="#单线程-结合js堆栈介绍" class="headerlink" title="单线程 结合js堆栈介绍"></a>单线程 结合js堆栈介绍</h1><p> 结合js堆栈介绍</p>
+<p><a href="http://thefullstack.xyz/solid-javascript/" target="_blank" rel="external">http://thefullstack.xyz/solid-javascript/</a><br><a href="http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7" target="_blank" rel="external">http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7</a><br><a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/" target="_blank" rel="external">https://addyosmani.com/resources/essentialjsdesignpatterns/book/</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rionamodo.github.io/2016/09/12/2016_9_12/" data-id="cit6u4qs40000tgq0frsbv02y" class="article-share-link">Partager</a>
+      <a data-url="https://rionamodo.github.io/2016/09/12/2016_9_12/" data-id="cit74v0qk0002skq0epiboo33" class="article-share-link">Share</a>
       
       
     </footer>
@@ -149,7 +200,7 @@ console.log(document.getElementById(&quot;#greeting&quot;).innerHTML);
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -170,7 +221,7 @@ console.log(document.getElementById(&quot;#greeting&quot;).innerHTML);
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 Riona<br>
-      Propulsé by <a href="/" target="_blank">
+      Powered by <a href="/" target="_blank">
       Riona
       </a>
     </div>
