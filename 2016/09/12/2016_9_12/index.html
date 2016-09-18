@@ -14,7 +14,9 @@
 <meta property="og:image" content="https://rionamodo.github.io/css/images/js/1.png">
 <meta property="og:image" content="https://rionamodo.github.io/css/images/js/2.png">
 <meta property="og:image" content="https://rionamodo.github.io/css/images/js/3.png">
-<meta property="og:updated_time" content="2016-09-17T15:15:15.994Z">
+<meta property="og:image" content="https://rionamodo.github.io/css/images/js/4.png">
+<meta property="og:image" content="https://rionamodo.github.io/css/images/js/4.png">
+<meta property="og:updated_time" content="2016-09-18T16:05:15.325Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js执行原理">
 <meta name="twitter:description" content="浏览器的组成浏览器的主要组件构成如图：     　　1.用户界面－ 包括地址栏、后退/前进按钮、书签目录等，也就是你所看到的除了用来显示你所请求页面的主窗口之外的其他部分　　2.浏览器引擎－ 用来查询及操作渲染引擎的接口　　3.渲染引擎－ 用来显示请求的内容，例如，如果请求内容为html，它负责解析html及css，并将解析后的结果显示出来　　4.网络－ 用来完成网络调用，例如http请求，它具有">
@@ -56,9 +58,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rionamodo.github.io"></form>
@@ -158,16 +160,25 @@ console.log(document.getElementById(&quot;#demo&quot;).innerHTML);
 &lt;/html&gt;
 </code></pre><font size="3" face="黑体" style="line-height:28px"><br>以上代码中的按钮被点击时，它触发ui线程创建两个任务并添加到任务中。第一个任务是按钮的ui更新，它需要改变改变外观以指示出它被按下了，第二个任务是JavaScript运行任务，包含handleClick()中代码，这里运行的唯一代码就是这个方法和所有被它调用的方法。假设UI线程空闲，第一个任务被检测并运行以更新按钮外观，然后JavaScript任务被检查和运行。在运行过程中，handleClick创建了一个新的&lt;div&gt;元素，并追加在&lt;body&gt;元素上，其效果是引发另一次UI改变。也就是说在JavaScript运行过程中，一个新的UI更新任务被添加到队列中<br></font>
 
-<h1 id="js的执行环境以及作用域"><a href="#js的执行环境以及作用域" class="headerlink" title="js的执行环境以及作用域"></a>js的执行环境以及作用域</h1><p><font size="3" face="黑体" style="line-height:28px"><br>　　执行环境（execution context，为简单起见，有时也称为“环境”）是JavaScript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。<br>　　每个执行环境都有一个与之关联的变量对象（variable object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。<br>　　全局执行环境是最外围的一个执行环境。根据ECMAScript 实现所在的宿主环境不同，表示执行环境的对象也不一样。在Web 浏览器中，全局执行环境被认为是window 对象，因此所有全局变量和函数都是作为window 对象的属性和方法创建的。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出——例如关闭网页或浏览器——时才会被销毁）。每个函数都有自己的执行环境。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。ECMAScript 程序中的执行流正是由这个方便的机制控制着。<br>　　当代码在一个环境中执行时，会创建变量对象的一个作用域链（scope chain）。作用域链的用途，是<br>保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行的代码所<br>在环境的变量对象。如果这个环境是函数，则将其活动对象（activation object）作为变量对象。活动对<br>象在最开始时只包含一个变量，即arguments 对象（这个对象在全局环境中是不存在的）。作用域链中<br>的下一个变量对象来自包含（外部）环境，而再下一个变量对象则来自下一个包含环境。这样，一直延<br>续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。<br></font></p>
-<h2 id="JavaScript编写中常应的问题"><a href="#JavaScript编写中常应的问题" class="headerlink" title="JavaScript编写中常应的问题"></a>JavaScript编写中常应的问题</h2><p>  <font size="3" face="黑体" style="line-height:28px"><br>　　1.$(document).ready,$(window).onload的区别<br>  </font></p>
-<h1 id="js的执行环境以及作用域-1"><a href="#js的执行环境以及作用域-1" class="headerlink" title="js的执行环境以及作用域"></a>js的执行环境以及作用域</h1><p>   es6 let</p>
+<h1 id="js的执行环境以及作用域"><a href="#js的执行环境以及作用域" class="headerlink" title="js的执行环境以及作用域"></a>js的执行环境以及作用域</h1><font size="3" face="黑体" style="line-height:28px"><br>想要理清执行环境以及作用域需要先理解一下几个概念<br><font size="3" face="黑体" style="line-height:28px;background-color:#eee;margin-bottom:0px" 　=""><br>变量对象（Variable Object）：是一个与执行上下文相关的特殊对象，它存储着在上下文中声明(若是函数包含函数内的)的以下内容：<br>　　１.变量 (var, 变量声明);<br>　　２.函数声明 (FunctionDeclaration, 缩写为FD); function xx(){}<br>　　３.函数的形参<br>活动对象(activation object)：函数执行上下文相关的特殊对象即变量对象<br><br></font><br>　　执行环境（execution context，为简单起见，有时也称为“环境”）是JavaScript 中最为重要的一个概念。执行环境定义了变量或函数有权访问的其他数据，决定了它们各自的行为。<br>　　每个执行环境都有一个与之关联的变量对象（variable object），环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。全局执行环境是最外围的一个执行环境。根据ECMAScript 实现所在的宿主环境不同，表示执行环境的对象也不一样。在Web 浏览器中，全局执行环境被认为是window 对象，因此所有全局变量和函数都是作为window 对象的属性和方法创建的。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出——例如关闭网页或浏览器——时才会被销毁）。每个函数都有自己的执行环境。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。ECMAScript 程序中的执行流正是由这个方便的机制控制着。<br>2.Scope/Scope Chain(作用域/作用域链)<br>　　任何程序设计语言都有作用域的概念，简单的说，作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。<br>　　在JavaScript中，变量的作用域有全局作用域和局部作用域两种。当代码在一个环境中执行时，会创建变量对象的一个作用域链（scope chain）。作用域链的用途，是保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其活动对象（activation object）作为变量对象。活动对象在最开始时只包含一个变量，即arguments 对象（这个对象在全局环境中是不存在的）。作用域链中的下一个变量对象来自包含（外部）环境，而再下一个变量对象则来自下一个包含环境。这样，一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。<br><img src="/css/images/js/4.png" alt="图4"><br></font>
+
+<pre><code>代码5：
+var color=&quot;blue&quot;;
+function getColor(){
+    var name=&quot;Join&quot;;
+    return color;
+}
+alert(getColor()); //blue
+</code></pre><font size="3" face="黑体" style="line-height:28px"><br>   如上代码5中的函数getColor()时会引用变量color。为了确保变量color的值，将开始一个两步走的搜索过程。首先，搜索getColor()的变量对象，查找其中是否包含一个名为color的标识符。在没有找到的情况下，搜索到下一个变量对象（全局环境的变量对象），然后在那里找到了名为color的标识符。因为搜索到了定义这个变量对象，搜索过程也宣告结束。<br>   <img src="/css/images/js/4.png" alt="图5"><br></font><br>## JavaScript编写中常应的问题 ##<br>  <font size="3" face="黑体" style="line-height:28px"><br>　　1.$(document).ready,$(window).onload的区别<br>  </font>
+
+<p>   es6 let</p>
 <h1 id="单线程-结合js堆栈介绍"><a href="#单线程-结合js堆栈介绍" class="headerlink" title="单线程 结合js堆栈介绍"></a>单线程 结合js堆栈介绍</h1><p> 结合js堆栈介绍</p>
 <p><a href="http://thefullstack.xyz/solid-javascript/" target="_blank" rel="external">http://thefullstack.xyz/solid-javascript/</a><br><a href="http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7" target="_blank" rel="external">http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7</a><br><a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/" target="_blank" rel="external">https://addyosmani.com/resources/essentialjsdesignpatterns/book/</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rionamodo.github.io/2016/09/12/2016_9_12/" data-id="cit7bpwe9000254q0944kx0ti" class="article-share-link">Share</a>
+      <a data-url="https://rionamodo.github.io/2016/09/12/2016_9_12/" data-id="cit7chyhx0002e0q01kva2eww" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -201,7 +212,7 @@ console.log(document.getElementById(&quot;#demo&quot;).innerHTML);
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -222,7 +233,7 @@ console.log(document.getElementById(&quot;#demo&quot;).innerHTML);
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 Riona<br>
-      Powered by <a href="/" target="_blank">
+      Propulsé by <a href="/" target="_blank">
       Riona
       </a>
     </div>
