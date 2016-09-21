@@ -161,16 +161,38 @@ function getColor(){
     return color;
 }
 alert(getColor()); //blue
-</code></pre><font size="3" face="黑体" style="line-height:28px"><br>   如上代码5中的函数getColor()时会引用变量color。为了确保变量color的值，将开始一个两步走的搜索过程。首先，搜索getColor()的变量对象，查找其中是否包含一个名为color的标识符。在没有找到的情况下，搜索到下一个变量对象（全局环境的变量对象），然后在那里找到了名为color的标识符。因为搜索到了定义这个变量对象，搜索过程也宣告结束。<br>   <img src="/css/images/js/4.png" alt="图5"><br></font><br>## JavaScript编写中常应的问题 ##<br>  <font size="3" face="黑体" style="line-height:28px"><br>　　1.$(document).ready,$(window).onload的区别<br>  </font>
+</code></pre><font size="3" face="黑体" style="line-height:28px"><br>   如上代码5中的函数getColor()时会引用变量color。为了确保变量color的值，将开始一个两步走的搜索过程。首先，搜索getColor()的变量对象，查找其中是否包含一个名为color的标识符。在没有找到的情况下，搜索到下一个变量对象（全局环境的变量对象），然后在那里找到了名为color的标识符。因为搜索到了定义这个变量对象，搜索过程也宣告结束。<br>   <img src="/css/images/js/5.png" alt="图5"><br></font><br>## 开发中应注意的一些问题 ##<br><br>  <font size="3" face="黑体" style="line-height:28px"><br>　　1.$(document).ready(),$(window).load()的区别<br>    loadTest.html与loadTest.js代码如下 代码6：<br>    控制台信息如图6<br>  </font>
 
-<p>   es6 let</p>
+<pre><code>代码6：
+//loadTest.html代码
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;Tutorial: Hello world!&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;../jquery-1.8.3/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;./loadTest.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 id=&quot;greeting&quot; onclick=&quot;handleClick(this)&quot;&gt;Hello world&lt;/h1&gt;
+&lt;div id=&quot;demo&quot;&gt;This is a demo!&lt;/div&gt;
+&lt;img src=&quot;../images/banner.jpg&quot; id=&quot;testImg&quot;/&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+//loadTest.js代码
+$(document).ready(function(){
+    console.log(&apos;$(document).ready:&apos;+$(&quot;#testImg&quot;)[0].width)
+})
+$(window).load(function(){
+    console.log(&apos;$(window).load:&apos;+$(&quot;#testImg&quot;)[0].width)
+})
+</code></pre><p> <img src="/css/images/js/5.png" alt="图5"></p>
 <h1 id="单线程-结合js堆栈介绍"><a href="#单线程-结合js堆栈介绍" class="headerlink" title="单线程 结合js堆栈介绍"></a>单线程 结合js堆栈介绍</h1><p> 结合js堆栈介绍</p>
 <p><a href="http://thefullstack.xyz/solid-javascript/" target="_blank" rel="external">http://thefullstack.xyz/solid-javascript/</a><br><a href="http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7" target="_blank" rel="external">http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7</a><br><a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/" target="_blank" rel="external">https://addyosmani.com/resources/essentialjsdesignpatterns/book/</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rionamodo.github.io/2016/09/12/2016_9_12/" data-id="cit7chyhx0002e0q01kva2eww" class="article-share-link">Partager</a>
+      <a data-url="https://rionamodo.github.io/2016/09/12/2016_9_12/" data-id="citd1hhgz0001k8q0p9yvp1k3" class="article-share-link">Partager</a>
       
       
     </footer>
