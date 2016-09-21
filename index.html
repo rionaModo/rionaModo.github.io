@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://rionamodo.github.io"></form>
@@ -91,7 +91,7 @@
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;title&gt;Tutorial: Hello world!&lt;/title&gt;
-     &lt;script type=&quot;application/javascript&quot; src=&quot;./index.js&quot;&gt;&lt;/script&gt;
+     &lt;script type=&quot;text/javascript&quot; src=&quot;./index.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
      &lt;h1 id=&quot;greeting&quot;&gt;Hello world&lt;/h1&gt;
@@ -117,7 +117,7 @@ console.log(document.getElementById(&quot;#greeting&quot;).innerHTML);
     &lt;h1 id=&quot;greeting&quot; onclick=&quot;handleClick(this)&quot;&gt;Hello world&lt;/h1&gt;
     &lt;div id=&quot;demo&quot;&gt;This is a demo!&lt;/div&gt;
 &lt;/body&gt;
-&lt;script type=&quot;application/javascript&quot; src=&quot;./task.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./task.js&quot;&gt;&lt;/script&gt;
 &lt;/html&gt;
 </code></pre><font size="3" face="黑体" style="line-height:28px"><br>　　在task.js中有这样一段代码：<br></font>
 
@@ -178,6 +178,8 @@ alert(getColor()); //blue
 &lt;img src=&quot;../images/banner.jpg&quot; id=&quot;testImg&quot;/&gt;
 &lt;/body&gt;
 &lt;/html&gt;
+
+
 //loadTest.js代码
 $(document).ready(function(){
     console.log(&apos;$(document).ready:&apos;+$(&quot;#testImg&quot;)[0].width)
@@ -185,14 +187,14 @@ $(document).ready(function(){
 $(window).load(function(){
     console.log(&apos;$(window).load:&apos;+$(&quot;#testImg&quot;)[0].width)
 })
-</code></pre><p> <img src="/css/images/js/5.png" alt="图5"></p>
+</code></pre><p> <img src="/css/images/js/6.png" alt="图6"></p>
 <h1 id="单线程-结合js堆栈介绍"><a href="#单线程-结合js堆栈介绍" class="headerlink" title="单线程 结合js堆栈介绍"></a>单线程 结合js堆栈介绍</h1><p> 结合js堆栈介绍</p>
 <p><a href="http://thefullstack.xyz/solid-javascript/" target="_blank" rel="external">http://thefullstack.xyz/solid-javascript/</a><br><a href="http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7" target="_blank" rel="external">http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7</a><br><a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/" target="_blank" rel="external">https://addyosmani.com/resources/essentialjsdesignpatterns/book/</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rionamodo.github.io/2016/09/12/2016_9_12/" data-id="citd1hhgz0001k8q0p9yvp1k3" class="article-share-link">Partager</a>
+      <a data-url="https://rionamodo.github.io/2016/09/12/2016_9_12/" data-id="citd3utzt00016gq0hotlf3w1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -227,7 +229,7 @@ $(window).load(function(){
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -248,7 +250,7 @@ $(window).load(function(){
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 Riona<br>
-      Propulsé by <a href="/" target="_blank">
+      Powered by <a href="/" target="_blank">
       Riona
       </a>
     </div>
