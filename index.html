@@ -161,7 +161,9 @@ function getColor(){
     return color;
 }
 alert(getColor()); //blue
-</code></pre><font size="3" face="黑体" style="line-height:28px"><br>   如上代码5中的函数getColor()时会引用变量color。为了确保变量color的值，将开始一个两步走的搜索过程。首先，搜索getColor()的变量对象，查找其中是否包含一个名为color的标识符。在没有找到的情况下，搜索到下一个变量对象（全局环境的变量对象），然后在那里找到了名为color的标识符。因为搜索到了定义这个变量对象，搜索过程也宣告结束。<br>   <img src="/css/images/js/5.png" alt="图5"><br></font><br>## 开发中应注意的一些问题 ##<br><br>  <font size="3" face="黑体" style="line-height:28px"><br>　　1.$(document).ready(),$(window).load()的区别<br>    loadTest.html与loadTest.js代码如下 代码6：<br>    控制台信息如图6<br>  </font>
+</code></pre><font size="3" face="黑体" style="line-height:28px"><br>   如上代码5中的函数getColor()时会引用变量color。为了确保变量color的值，将开始一个两步走的搜索过程。首先，搜索getColor()的变量对象，查找其中是否包含一个名为color的标识符。在没有找到的情况下，搜索到下一个变量对象（全局环境的变量对象），然后在那里找到了名为color的标识符。因为搜索到了定义这个变量对象，搜索过程也宣告结束。<br>   <img src="/css/images/js/5.png" alt="图5"><br></font>
+
+<h2 id="开发中应注意的一些问题"><a href="#开发中应注意的一些问题" class="headerlink" title="开发中应注意的一些问题"></a>开发中应注意的一些问题</h2>  <font size="3" face="黑体" style="line-height:28px"><br>1.$(document).ready(),$(window).load()的区别<br> 　　loadTest.html与loadTest.js代码如下 代码6：<br>    控制台信息如图6<br>  </font>
 
 <pre><code>代码6：
 //loadTest.html代码
@@ -187,14 +189,17 @@ $(document).ready(function(){
 $(window).load(function(){
     console.log(&apos;$(window).load:&apos;+$(&quot;#testImg&quot;)[0].width)
 })
-</code></pre><p> <img src="/css/images/js/6.png" alt="图6"></p>
-<h1 id="单线程-结合js堆栈介绍"><a href="#单线程-结合js堆栈介绍" class="headerlink" title="单线程 结合js堆栈介绍"></a>单线程 结合js堆栈介绍</h1><p> 结合js堆栈介绍</p>
-<p><a href="http://thefullstack.xyz/solid-javascript/" target="_blank" rel="external">http://thefullstack.xyz/solid-javascript/</a><br><a href="http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7" target="_blank" rel="external">http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7</a><br><a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/" target="_blank" rel="external">https://addyosmani.com/resources/essentialjsdesignpatterns/book/</a></p>
-
+</code></pre><p> <img src="/css/images/js/6.png" alt="图6"><br> 　　由上可见$(document).ready()是中的回调在dom树加载完之后即执行，$(window).load()的回调是需要在图片等资源加载完之后执行，若是像以上例子需要取得图片的宽度做相关运算，就需要采用$(window).load()，但，不涉及这样的计算建议用$(document).ready()</p>
+<p> 2.变量、作用域、全局污染<br> 3.单线程的 函数执行时间不确定，不要依赖公共变量。尤其是异步</p>
+<pre><code>&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;
+</code></pre><p>4.</p>
+<!--http://thefullstack.xyz/solid-javascript/
+http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7
+https://addyosmani.com/resources/essentialjsdesignpatterns/book/ -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rionamodo.github.io/2016/09/12/2016_9_12/" data-id="citd3utzt00016gq0hotlf3w1" class="article-share-link">Share</a>
+      <a data-url="https://rionamodo.github.io/2016/09/12/2016_9_12/" data-id="citejxz0f00024wq0g001faro" class="article-share-link">Share</a>
       
       
     </footer>
