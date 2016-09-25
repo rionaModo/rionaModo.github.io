@@ -163,7 +163,7 @@ function getColor(){
 alert(getColor()); //blue
 </code></pre><font size="3" face="黑体" style="line-height:28px"><br>   如上代码5中的函数getColor()时会引用变量color。为了确保变量color的值，将开始一个两步走的搜索过程。首先，搜索getColor()的变量对象，查找其中是否包含一个名为color的标识符。在没有找到的情况下，搜索到下一个变量对象（全局环境的变量对象），然后在那里找到了名为color的标识符。因为搜索到了定义这个变量对象，搜索过程也宣告结束。<br>   <img src="/css/images/js/5.png" alt="图5"><br></font>
 
-<h2 id="开发中应注意的一些问题"><a href="#开发中应注意的一些问题" class="headerlink" title="开发中应注意的一些问题"></a>开发中应注意的一些问题</h2>  <font size="3" face="黑体" style="line-height:28px"><br>1.$(document).ready(),$(window).load()的区别<br> 　　loadTest.html与loadTest.js代码如下 代码6：<br>    控制台信息如图6<br>  </font>
+<h2 id="开发中应注意的一些问题"><a href="#开发中应注意的一些问题" class="headerlink" title="开发中应注意的一些问题"></a>开发中应注意的一些问题</h2>  <font size="3" face="黑体" style="line-height:28px"><br>1.jquery中$(document).ready(),$(window).load()的区别<br> 　　loadTest.html与loadTest.js代码如下 代码6：<br>    控制台信息如图6<br>  </font>
 
 <pre><code>代码6：
 //loadTest.html代码
@@ -189,17 +189,42 @@ $(document).ready(function(){
 $(window).load(function(){
     console.log(&apos;$(window).load:&apos;+$(&quot;#testImg&quot;)[0].width)
 })
-</code></pre><p> <img src="/css/images/js/6.png" alt="图6"><br> 　　由上可见$(document).ready()是中的回调在dom树加载完之后即执行，$(window).load()的回调是需要在图片等资源加载完之后执行，若是像以上例子需要取得图片的宽度做相关运算，就需要采用$(window).load()，但，不涉及这样的计算建议用$(document).ready()</p>
-<p> 2.变量、作用域、全局污染<br> 3.单线程的 函数执行时间不确定，不要依赖公共变量。尤其是异步</p>
-<pre><code>&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;
-</code></pre><p>4.</p>
+</code></pre><p> <img src="/css/images/js/6.png" alt="图6"><br> <font size="3" face="黑体" style="line-height:28px"><br> 　　由上可见$(document).ready()是中的回调在dom树加载完之后即执行，$(window).load()的回调是需要在图片等资源加载完之后执行，若是像以上例子需要取得图片的宽度做相关运算，就需要采用$(window).load()，但，不涉及这样的计算建议用$(document).ready()</font></p>
+<p> 2.变量、作用域、全局污染<br> 　　开发中应少定义全局比变量，避免全局污染<br> 　　局部变量只在局部范围内有效</p>
+<pre><code>//代码7：
+var SYS_CONST=&quot;test&quot;;
+function testVar(){
+  var a=&quot;hello world&quot;;
+  console.log(&quot;testVar:&quot;+SYS_CONST);
+  console.log(&quot;testVar:&quot;+a);
+}
+function testNoVar(){
+      console.log(&quot;testNoVar:&quot;+SYS_CONST);
+      console.log(&quot;testNoVar:&quot;+a);
+}
+ testVar();
+ testNoVar();
+</code></pre><p><img src="/css/images/js/7.png" alt="图7">;<br> <font size="3" face="黑体" style="line-height:28px"><br> 　　testNoVar 报错“ a is not defined”，因为变量‘a’,只在函数 testVar中有效。<br> 3.S的单线程是指一个浏览器进程中只有一个JS的执行线程，同一时刻内只会有一段代码在执行，但是，有些代码会花很长的时间才能执行完（比如像多台请求），所有出现事件和异步的概念。<br> 在设计异步的情况下，一定要注意不要采用同一变量。比如说<br> </font></p>
+<pre><code>for(var i=0;i&lt;5;i++){
+    $.ajax({
+        type: &quot;GET&quot;,
+        url: &quot;test.json&quot;,
+        data: {username:$(&quot;#username&quot;).val(), content:$(&quot;#content&quot;).val()},
+        dataType: &quot;json&quot;,
+        success: function(data){
+            console.log(i);
+        }
+    });
+}
+</code></pre><p><img src="/css/images/js/8.png" alt="图8">;</p>
+<p> 以上我们的目的其实是想在ajax回调里面打印对应顺序的i值，但最后，基本上所有打印出来的i都为5，在执行for循环时，ajax回调并没有按照顺序执行，而是才用事件的机制，等后台返回前端之后，在将回调推到队列里，之后再按队列顺序执行至ajax回调。所以最后一只打印出来的i值为5</p>
 <!--http://thefullstack.xyz/solid-javascript/
 http://wenku.baidu.com/link?url=MDDFwYhqNUc5f_m2Ay10Ry2QqB1-6J3IR5COEWtSuYljOVvrBkYOYi-jBc4TeLKeJsrsZfBi7erzMHWcBUhSaSpF5LlZ7nlMOlLaybMlMh7
 https://addyosmani.com/resources/essentialjsdesignpatterns/book/ -->
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://rionamodo.github.io/2016/09/12/2016_9_12/" data-id="citejxz0f00024wq0g001faro" class="article-share-link">Share</a>
+      <a data-url="https://rionamodo.github.io/2016/09/12/2016_9_12/" data-id="citejz71t0002g4q0leturbw9" class="article-share-link">Share</a>
       
       
     </footer>
